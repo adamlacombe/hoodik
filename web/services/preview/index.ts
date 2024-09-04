@@ -22,6 +22,7 @@ function isFilePreviewable(item: AppFile): boolean {
     item.size > 0 &&
     (item.thumbnail !== undefined ||
       item.mime === 'application/pdf' ||
+      item.mime === 'video/mp4' ||
       item.mime === 'image/svg+xml')
   )
 }
@@ -120,10 +121,9 @@ export abstract class Preview {
       return 'pdf'
     }
 
-    // TODO: maybe someday
-    // if (this.isVideo()) {
-    //   return 'video'
-    // }
+    if (this.isVideo()) {
+      return 'video'
+    }
 
     return null
   }
@@ -153,6 +153,7 @@ export abstract class Preview {
    * Lets us know if the preview is a video
    */
   public isVideo(): boolean {
-    return this.is() && this.thumbnail !== undefined && this.mime.startsWith('video/')
+    // TODO thumbnail? this.thumbnail !== undefined
+    return this.is() && this.mime.startsWith('video/')
   }
 }

@@ -11,6 +11,7 @@ import {
 import BaseIcon from '@/components/ui/BaseIcon.vue'
 import BaseButton from '@/components/ui/BaseButton.vue'
 import PreviewImage from './PreviewImage.vue'
+import PreviewVideo from './PreviewVideo.vue'
 import { computed, onMounted, onUnmounted } from 'vue'
 import type { Preview } from '!/preview'
 import PreviewPdf from './PreviewPdf.vue'
@@ -184,6 +185,7 @@ onUnmounted(() => {
       </div>
 
       <PreviewImage v-if="previewType === 'image'" v-model="preview" />
+      <PreviewVideo v-else-if="previewType === 'video'" v-model="preview" />
       <PreviewPdf v-else-if="previewType === 'pdf'" v-model="preview" />
 
       <div class="flex flex-col" v-else>
